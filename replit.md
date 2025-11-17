@@ -2,7 +2,7 @@
 
 ## Overview
 
-A complete video streaming platform called **Stream East** built with pure PHP (no frameworks) that enables embedding and managing YouTube videos, Shorts, movies, and live sports streams. The application features a full-featured CMS admin panel for content management, SEO optimization, monetization capabilities, and a professional multi-section footer.
+A complete video streaming platform called **Stream East** built with pure PHP (no frameworks) that enables embedding and managing YouTube videos, Shorts, movies, and live sports streams. The application features a full-featured CMS admin panel for content management, SEO optimization, monetization capabilities, a professional multi-section footer, and a YouTube-style Shorts carousel section on the homepage.
 
 ## User Preferences
 
@@ -25,6 +25,7 @@ Preferred communication style: Simple, everyday language.
 **User Interface Structure:**
 - Main user area with video grid layout
 - Dedicated pages: Homepage, Trending, Shorts, Movies, Live Sports, Blog, Search
+- Homepage Shorts carousel: Horizontal scrolling section appearing after 2 rows (8 videos) with left/right navigation buttons
 - Single video player page with embedded video, related videos, sharing, and reporting
 - Centered search bar in sticky header navigation
 - Theme switching capability (dark/light modes via CSS variables with localStorage persistence)
@@ -32,6 +33,7 @@ Preferred communication style: Simple, everyday language.
 - Login button with gradient styling in header
 - Blog section with modern card-based grid layout (6 sample posts)
 - Professional footer with social media links, quick navigation, legal links, and newsletter signup form
+- Full light mode support with optimized text visibility for sidebar and footer
 
 ### Backend Architecture
 
