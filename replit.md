@@ -2,7 +2,7 @@
 
 ## Overview
 
-Stream East is a complete video streaming platform built with pure PHP, designed for embedding and managing YouTube videos, Shorts, movies, and live sports streams. It features a full-featured CMS admin panel for content management, SEO optimization, monetization, a professional multi-section footer, and a YouTube-style Shorts carousel. The platform aims to provide a robust, lightweight, and easily deployable solution for video content delivery with a focus on administrative control and user experience.
+Stream East is a complete video streaming platform built with pure PHP, designed for embedding and managing YouTube videos, Shorts, movies, and live sports streams. It features a full-featured CMS admin panel for content management, SEO optimization, monetization, branding customization (logo and favicon uploads), extensive social media integration (12+ platforms), mobile/desktop app links, a professional multi-section footer, and a YouTube-style Shorts carousel. The platform aims to provide a robust, lightweight, and easily deployable solution for video content delivery with a focus on administrative control and user experience.
 
 ## User Preferences
 
