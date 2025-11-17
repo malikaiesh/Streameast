@@ -61,9 +61,41 @@
                     </div>
                 </div>
                 <?php endif; ?>
+            </div>
+            
+            <div class="footer-column">
+                <h4>QUICK LINKS</h4>
+                <ul class="footer-links">
+                    <li><a href="/">› Home</a></li>
+                    <li><a href="/trending.php">› Trending</a></li>
+                    <li><a href="/shorts.php">› Shorts</a></li>
+                    <li><a href="/movies.php">› Movies</a></li>
+                    <li><a href="/live.php">› Live Sports</a></li>
+                    <li><a href="/blog.php">› Blog</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>LEGAL</h4>
+                <ul class="footer-links">
+                    <li><a href="/privacy-policy.php">› Privacy Policy</a></li>
+                    <li><a href="/terms.php">› Terms of Service</a></li>
+                    <li><a href="/dmca.php">› DMCA</a></li>
+                    <li><a href="/contact.php">› Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>STAY UPDATED</h4>
+                <p class="newsletter-text">Subscribe to get new updates and tips!</p>
+                <form class="newsletter-form" action="#" method="post">
+                    <input type="email" name="email" placeholder="Your email" required>
+                    <button type="submit" aria-label="Subscribe">→</button>
+                </form>
                 
                 <?php
                 // App download links
+                $settings = new Settings();
                 $app_links = [
                     'android' => $settings->get('app_android'),
                     'ios' => $settings->get('app_ios'),
@@ -119,37 +151,6 @@
                     </div>
                 </div>
                 <?php endif; ?>
-            </div>
-            
-            <div class="footer-column">
-                <h4>QUICK LINKS</h4>
-                <ul class="footer-links">
-                    <li><a href="/">› Home</a></li>
-                    <li><a href="/trending.php">› Trending</a></li>
-                    <li><a href="/shorts.php">› Shorts</a></li>
-                    <li><a href="/movies.php">› Movies</a></li>
-                    <li><a href="/live.php">› Live Sports</a></li>
-                    <li><a href="/blog.php">› Blog</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h4>LEGAL</h4>
-                <ul class="footer-links">
-                    <li><a href="/privacy-policy.php">› Privacy Policy</a></li>
-                    <li><a href="/terms.php">› Terms of Service</a></li>
-                    <li><a href="/dmca.php">› DMCA</a></li>
-                    <li><a href="/contact.php">› Contact Us</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h4>STAY UPDATED</h4>
-                <p class="newsletter-text">Subscribe to get new updates and tips!</p>
-                <form class="newsletter-form" action="#" method="post">
-                    <input type="email" name="email" placeholder="Your email" required>
-                    <button type="submit" aria-label="Subscribe">→</button>
-                </form>
             </div>
         </div>
         
