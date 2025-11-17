@@ -45,6 +45,10 @@
     <meta name="twitter:image" content="<?= htmlspecialchars($metaImage) ?>">
     <?php endif; ?>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="<?= SITE_URL ?>/assets/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="<?= SITE_URL ?>/assets/favicon.png">
+    
     <!-- Schema.org VideoObject -->
     <?php if (isset($video)): ?>
     <script type="application/ld+json">
