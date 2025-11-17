@@ -24,10 +24,13 @@ Preferred communication style: Simple, everyday language.
 
 **User Interface Structure:**
 - Main user area with video grid layout
-- Dedicated pages: Homepage, Trending, Shorts, Movies, Live Sports, Search
+- Dedicated pages: Homepage, Trending, Shorts, Movies, Live Sports, Blog, Search
 - Single video player page with embedded video, related videos, sharing, and reporting
-- Sticky header navigation with search functionality
-- Theme switching capability (dark/light modes via CSS variables)
+- Centered search bar in sticky header navigation
+- Theme switching capability (dark/light modes via CSS variables with localStorage persistence)
+- Theme toggle button (moon/sun icons) for seamless theme switching
+- Login button with gradient styling in header
+- Blog section with modern card-based grid layout (6 sample posts)
 - Professional footer with social media links, quick navigation, legal links, and newsletter signup form
 
 ### Backend Architecture
