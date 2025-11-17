@@ -33,6 +33,14 @@
                         <span class="nav-icon">📝</span>
                         <span class="nav-label">Blog Posts</span>
                     </a>
+                    <a href="home-content.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'home-content.php' ? 'active' : '' ?>">
+                        <span class="nav-icon">🏠</span>
+                        <span class="nav-label">Home Content</span>
+                    </a>
+                    <a href="faqs.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'faqs.php' ? 'active' : '' ?>">
+                        <span class="nav-icon">❓</span>
+                        <span class="nav-label">FAQs</span>
+                    </a>
                     <a href="pages.php" class="nav-item <?= in_array(basename($_SERVER['PHP_SELF']), ['pages.php', 'edit-page.php']) ? 'active' : '' ?>">
                         <span class="nav-icon">📄</span>
                         <span class="nav-label">Pages</span>

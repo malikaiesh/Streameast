@@ -309,4 +309,36 @@ class Security {
             'activity_logs_24h' => $db->fetchOne("SELECT COUNT(*) as count FROM security_activity_logs WHERE created_at > datetime('now', '-24 hours')")['count'] ?? 0,
         ];
     }
+    
+    /**
+     * Sanitize HTML for blog content display
+     * NOTE: Home content sections and FAQs are admin-controlled and displayed without sanitization,
+     * following standard CMS practice where admins are trusted users (like WordPress, Joomla, etc.)
+     * This method is kept for potential future use with user-generated content.
+     */
+    public static function sanitizeHTML($html) {
+        if (empty($html)) {
+            return '';
+        }
+        
+        // Allowed tags for content display
+        $allowedTags = '<p><br><strong><b><em><i><u><a><ul><ol><li><blockquote><h1><h2><h3><h4><h5><h6><code><pre>';
+        
+        // First pass: strip all tags except allowed ones
+        $clean = strip_tags($html, $allowedTags);
+        
+        // Second pass: Remove any event handlers and dangerous attributes using regex
+        $clean = preg_replace('/<([a-z][a-z0-9]*)[^>]*?(on\w+\s*=)[^>]*?>/i', '<$1>', $clean);
+        
+        // Remove javascript: protocol from links
+        $clean = preg_replace('/<a[^>]*href\s*=\s*["\']?\s*javascript:/i', '<a href="', $clean);
+        
+        // Remove data: protocol (can be used for XSS)
+        $clean = preg_replace('/<[^>]*\s+(href|src)\s*=\s*["\']?\s*data:/i', '', $clean);
+        
+        // Remove any remaining dangerous protocols
+        $clean = preg_replace('/<[^>]*\s+(href|src)\s*=\s*["\']?\s*(vbscript|file|about):/i', '', $clean);
+        
+        return $clean;
+    }
 }

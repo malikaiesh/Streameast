@@ -1,9 +1,13 @@
 <?php
 require_once 'config/config.php';
+require_once 'includes/HomeContent.php';
+require_once 'includes/FAQ.php';
 
 $videoObj = new Video();
 $categoryObj = new Category();
 $settingsObj = new Settings();
+$homeContentObj = new HomeContent();
+$faqObj = new FAQ();
 
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $categorySlug = $_GET['category'] ?? '';
@@ -38,8 +42,50 @@ if ($page == 1 && !$categorySlug && !$search) {
     $shorts = $videoObj->getAll(1, 10, ['video_type' => 'short']);
 }
 
+// Fetch home content sections and FAQs for homepage
+$homeContent = [];
+$faqs = [];
+if ($page == 1 && !$categorySlug && !$search) {
+    $homeContent = $homeContentObj->getActive();
+    $faqs = $faqObj->getActive();
+}
+
 include 'views/header.php';
 ?>
+
+<!-- Home Content Sections -->
+<?php if (!empty($homeContent)): ?>
+<div class="home-content-sections">
+    <?php foreach ($homeContent as $section): ?>
+    <div class="content-section-card">
+        <h2 class="section-title">📚 <?= Security::output($section['title']) ?></h2>
+        <div class="section-content scrollable-content">
+            <?= $section['content'] ?>
+        </div>
+    </div>
+    <?php endforeach; ?>
+</div>
+<?php endif; ?>
+
+<!-- FAQs Section -->
+<?php if (!empty($faqs)): ?>
+<div class="faqs-section">
+    <h2 class="faqs-title">❓ Frequently Asked Questions</h2>
+    <div class="faqs-container">
+        <?php foreach ($faqs as $faq): ?>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <span><?= Security::output($faq['question']) ?></span>
+                <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+                <?= $faq['answer'] ?>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+<?php endif; ?>
 
 <div class="content-area">
     <div class="videos-grid">
@@ -138,5 +184,12 @@ include 'views/header.php';
     </div>
     <?php endif; ?>
 </div>
+
+<script>
+function toggleFAQ(element) {
+    const faqItem = element.parentElement;
+    faqItem.classList.toggle('active');
+}
+</script>
 
 <?php include 'views/footer.php'; ?>
