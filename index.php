@@ -32,6 +32,12 @@ $totalVideos = $videoObj->getCount($filters);
 $totalPages = ceil($totalVideos / VIDEOS_PER_PAGE);
 $categories = $categoryObj->getAll();
 
+// Fetch Shorts for homepage
+$shorts = [];
+if ($page == 1 && !$categorySlug && !$search) {
+    $shorts = $videoObj->getAll(1, 10, ['video_type' => 'short']);
+}
+
 include 'views/header.php';
 ?>
 
@@ -43,7 +49,49 @@ include 'views/header.php';
                 <p>Try searching for something else or check back later.</p>
             </div>
         <?php else: ?>
-            <?php foreach ($videos as $v): ?>
+            <?php 
+            $videoCount = 0;
+            $shortsShown = false;
+            foreach ($videos as $v): 
+                // Show Shorts section after 8 videos (2 rows)
+                if ($videoCount == 8 && !$shortsShown && !empty($shorts)):
+                    $shortsShown = true;
+            ?>
+            </div>
+            
+            <!-- Shorts Section -->
+            <div class="shorts-section">
+                <div class="shorts-header">
+                    <h2>📱 Shorts</h2>
+                    <a href="<?= SITE_URL ?>/shorts.php" class="view-all">View All →</a>
+                </div>
+                <div class="shorts-container">
+                    <button class="scroll-btn scroll-left" onclick="scrollShorts('left')">‹</button>
+                    <div class="shorts-scroll" id="shortsScroll">
+                        <?php foreach ($shorts as $short): ?>
+                            <div class="short-card">
+                                <a href="watch.php?v=<?= $short['slug'] ?>" class="short-thumbnail">
+                                    <?php if ($short['thumbnail']): ?>
+                                        <img src="<?= htmlspecialchars($short['thumbnail']) ?>" alt="<?= Security::output($short['title']) ?>">
+                                    <?php else: ?>
+                                        <div class="no-thumbnail">No Thumbnail</div>
+                                    <?php endif; ?>
+                                    <span class="shorts-badge">SHORTS</span>
+                                </a>
+                                <div class="short-info">
+                                    <h3><a href="watch.php?v=<?= $short['slug'] ?>"><?= Security::output($short['title']) ?></a></h3>
+                                    <span class="short-views"><?= number_format($short['views']) ?> views</span>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <button class="scroll-btn scroll-right" onclick="scrollShorts('right')">›</button>
+                </div>
+            </div>
+            
+            <div class="videos-grid">
+            <?php endif; ?>
+            
                 <div class="video-card">
                     <a href="watch.php?v=<?= $v['slug'] ?>" class="video-thumbnail">
                         <?php if ($v['thumbnail']): ?>
@@ -68,7 +116,9 @@ include 'views/header.php';
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
+            <?php 
+                $videoCount++;
+            endforeach; ?>
         <?php endif; ?>
     </div>
 

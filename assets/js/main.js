@@ -23,6 +23,19 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.classList.add('theme-' + savedTheme);
 });
 
+// Shorts horizontal scroll
+function scrollShorts(direction) {
+    const container = document.getElementById('shortsScroll');
+    if (!container) return;
+    
+    const scrollAmount = 400;
+    if (direction === 'left') {
+        container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    } else {
+        container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+}
+
 // Search autocomplete
 const searchInput = document.querySelector('.search-form input[name="s"]');
 if (searchInput) {
