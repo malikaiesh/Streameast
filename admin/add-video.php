@@ -178,4 +178,59 @@ include 'views/header.php';
     <a href="videos.php" class="btn btn-secondary">Cancel</a>
 </form>
 
+<script>
+// Auto-fetch YouTube video data when URL is entered
+document.querySelector('input[name="video_url"]').addEventListener('blur', function() {
+    const url = this.value;
+    if (!url) return;
+    
+    // Extract YouTube ID to verify it's a valid YouTube URL
+    const youtubeRegex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i;
+    if (!youtubeRegex.test(url)) return;
+    
+    // Show loading indicator
+    const titleInput = document.querySelector('input[name="title"]');
+    const originalTitle = titleInput.value;
+    titleInput.value = 'Loading...';
+    titleInput.disabled = true;
+    
+    // Fetch video data
+    fetch('ajax/fetch-youtube-data.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: 'video_url=' + encodeURIComponent(url)
+    })
+    .then(r => r.json())
+    .then(data => {
+        titleInput.disabled = false;
+        if (data.success && data.data) {
+            if (!originalTitle) {
+                titleInput.value = data.data.title || '';
+            } else {
+                titleInput.value = originalTitle;
+            }
+            
+            const descInput = document.querySelector('textarea[name="description"]');
+            if (!descInput.value && data.data.description) {
+                descInput.value = data.data.description;
+            }
+            
+            const durationInput = document.querySelector('input[name="duration"]');
+            if (!durationInput.value && data.data.duration) {
+                durationInput.value = data.data.duration;
+            }
+            
+            console.log('Auto-fetched video data:', data.data);
+        } else {
+            if (!originalTitle) titleInput.value = '';
+        }
+    })
+    .catch(err => {
+        titleInput.disabled = false;
+        if (!originalTitle) titleInput.value = '';
+        console.error('Failed to fetch video data:', err);
+    });
+});
+</script>
+
 <?php include 'views/footer.php'; ?>

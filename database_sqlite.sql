@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS reports (
 
 -- Insert default admin (username: admin, password: admin123)
 INSERT OR IGNORE INTO admin (username, password, email) VALUES 
-('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin@example.com');
+('admin', '$2y$10$x.7bd9E7O1iqAGGkqtGq6OWTx5GqjkR2GdodTLpAiQDc5OVFLlMZG', 'admin@example.com');
 
 -- Insert default categories
 INSERT OR IGNORE INTO categories (name, slug, description) VALUES

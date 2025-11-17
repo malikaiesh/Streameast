@@ -1,11 +1,11 @@
 <?php
 require_once 'config/config.php';
 
-$video = new Video();
+$videoObj = new Video();
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-$videos = $video->getAll($page, VIDEOS_PER_PAGE, ['trending' => true]);
-$totalVideos = $video->getCount(['trending' => true]);
+$videos = $videoObj->getAll($page, VIDEOS_PER_PAGE, ['trending' => true]);
+$totalVideos = $videoObj->getCount(['trending' => true]);
 $totalPages = ceil($totalVideos / VIDEOS_PER_PAGE);
 $pageTitle = 'Trending Videos';
 

@@ -3,8 +3,8 @@ require_once 'config/config.php';
 
 header('Content-Type: application/xml; charset=utf-8');
 
-$video = new Video();
-$videos = $video->getAll(1, 1000); // Get all videos
+$videoObj = new Video();
+$videos = $videoObj->getAll(1, 1000); // Get all videos
 
 echo '<?xml version="1.0" encoding="UTF-8"?>';
 ?>

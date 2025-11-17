@@ -1,0 +1,36 @@
+# PHP
+vendor/
+composer.lock
+*.log
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+database.db
+
+# Uploads
+uploads/*
+!uploads/.gitkeep
+assets/thumbnails/*
+!assets/thumbnails/.gitkeep
+
+# System files
+.DS_Store
+Thumbs.db
+*~
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+
+# Temporary files
+/tmp/
+*.tmp
+*.cache

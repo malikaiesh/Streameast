@@ -1,11 +1,11 @@
 <?php
 require_once 'config/config.php';
 
-$video = new Video();
+$videoObj = new Video();
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-$videos = $video->getAll($page, VIDEOS_PER_PAGE, ['type' => 'movie']);
-$totalVideos = $video->getCount(['type' => 'movie']);
+$videos = $videoObj->getAll($page, VIDEOS_PER_PAGE, ['type' => 'movie']);
+$totalVideos = $videoObj->getCount(['type' => 'movie']);
 $totalPages = ceil($totalVideos / VIDEOS_PER_PAGE);
 $pageTitle = 'Movies';
 

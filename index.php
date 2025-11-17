@@ -1,9 +1,9 @@
 <?php
 require_once 'config/config.php';
 
-$video = new Video();
-$category = new Category();
-$settings = new Settings();
+$videoObj = new Video();
+$categoryObj = new Category();
+$settingsObj = new Settings();
 
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $categorySlug = $_GET['category'] ?? '';
@@ -11,7 +11,7 @@ $search = $_GET['s'] ?? '';
 
 $filters = [];
 if ($categorySlug) {
-    $cat = $category->getBySlug($categorySlug);
+    $cat = $categoryObj->getBySlug($categorySlug);
     if ($cat) {
         $filters['category_id'] = $cat['id'];
         $pageTitle = Security::output($cat['name']) . ' Videos';
@@ -27,10 +27,10 @@ if (!isset($pageTitle)) {
     $pageTitle = 'Home';
 }
 
-$videos = $video->getAll($page, VIDEOS_PER_PAGE, $filters);
-$totalVideos = $video->getCount($filters);
+$videos = $videoObj->getAll($page, VIDEOS_PER_PAGE, $filters);
+$totalVideos = $videoObj->getCount($filters);
 $totalPages = ceil($totalVideos / VIDEOS_PER_PAGE);
-$categories = $category->getAll();
+$categories = $categoryObj->getAll();
 
 include 'views/header.php';
 ?>

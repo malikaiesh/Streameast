@@ -1,6 +1,6 @@
-
 <?php
 // Configuration file
+ob_start();
 session_start();
 
 // Database configuration - Using SQLite for simplicity (can easily switch to MySQL)
