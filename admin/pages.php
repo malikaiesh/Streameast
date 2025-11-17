@@ -122,11 +122,11 @@ include 'views/header.php';
 .section-title {
     font-size: 18px;
     font-weight: 600;
-    color: var(--text-primary);
+    color: #ffffff;
 }
 
 .section-description {
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.8);
     font-size: 14px;
     margin-top: 5px;
 }
@@ -179,7 +179,7 @@ include 'views/header.php';
     font-weight: 600;
     text-transform: uppercase;
     font-size: 12px;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.7);
     letter-spacing: 0.5px;
 }
 

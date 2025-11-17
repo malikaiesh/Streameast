@@ -137,6 +137,130 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_backup'])) {
     }
 }
 
+// Handle backup restore
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['restore_backup'])) {
+    if (!Security::verifyCSRFToken($_POST['csrf_token'] ?? '')) {
+        $error = 'Invalid request';
+    } else {
+        $backupFile = basename($_POST['backup_file']);
+        $backupPath = $backupDir . '/' . $backupFile;
+        
+        if (file_exists($backupPath) && strpos($backupFile, 'backup_') === 0) {
+            try {
+                $zip = new ZipArchive();
+                if ($zip->open($backupPath) === TRUE) {
+                    $tempDir = $backupDir . '/restore_temp_' . time();
+                    mkdir($tempDir, 0755, true);
+                    
+                    // Extract all files
+                    $zip->extractTo($tempDir);
+                    $zip->close();
+                    
+                    // Restore database
+                    if (DB_TYPE === 'sqlite') {
+                        $dbFile = $tempDir . '/database.db';
+                        if (file_exists($dbFile)) {
+                            $targetDb = BASE_PATH . '/' . DB_PATH;
+                            copy($dbFile, $targetDb);
+                        }
+                    } else {
+                        // Restore MySQL from SQL dump
+                        $sqlFile = $tempDir . '/database.sql';
+                        if (file_exists($sqlFile)) {
+                            $sql = file_get_contents($sqlFile);
+                            $statements = explode(';', $sql);
+                            foreach ($statements as $statement) {
+                                $statement = trim($statement);
+                                if (!empty($statement)) {
+                                    $db->query($statement);
+                                }
+                            }
+                        }
+                    }
+                    
+                    // Restore uploads
+                    $uploadsSource = $tempDir . '/uploads';
+                    if (file_exists($uploadsSource)) {
+                        $uploadsTarget = BASE_PATH . '/uploads';
+                        if (!file_exists($uploadsTarget)) {
+                            mkdir($uploadsTarget, 0755, true);
+                        }
+                        
+                        $files = new RecursiveIteratorIterator(
+                            new RecursiveDirectoryIterator($uploadsSource),
+                            RecursiveIteratorIterator::LEAVES_ONLY
+                        );
+                        
+                        foreach ($files as $file) {
+                            if (!$file->isDir()) {
+                                $filePath = $file->getRealPath();
+                                $relativePath = substr($filePath, strlen($uploadsSource) + 1);
+                                $targetPath = $uploadsTarget . '/' . $relativePath;
+                                
+                                $targetSubDir = dirname($targetPath);
+                                if (!file_exists($targetSubDir)) {
+                                    mkdir($targetSubDir, 0755, true);
+                                }
+                                
+                                copy($filePath, $targetPath);
+                            }
+                        }
+                    }
+                    
+                    // Restore thumbnails
+                    $thumbsSource = $tempDir . '/assets/thumbnails';
+                    if (file_exists($thumbsSource)) {
+                        $thumbsTarget = BASE_PATH . '/assets/thumbnails';
+                        if (!file_exists($thumbsTarget)) {
+                            mkdir($thumbsTarget, 0755, true);
+                        }
+                        
+                        $files = new RecursiveIteratorIterator(
+                            new RecursiveDirectoryIterator($thumbsSource),
+                            RecursiveIteratorIterator::LEAVES_ONLY
+                        );
+                        
+                        foreach ($files as $file) {
+                            if (!$file->isDir()) {
+                                $filePath = $file->getRealPath();
+                                $relativePath = substr($filePath, strlen($thumbsSource) + 1);
+                                $targetPath = $thumbsTarget . '/' . $relativePath;
+                                
+                                $targetSubDir = dirname($targetPath);
+                                if (!file_exists($targetSubDir)) {
+                                    mkdir($targetSubDir, 0755, true);
+                                }
+                                
+                                copy($filePath, $targetPath);
+                            }
+                        }
+                    }
+                    
+                    // Clean up temp directory
+                    function deleteDirectory($dir) {
+                        if (!file_exists($dir)) return;
+                        $files = array_diff(scandir($dir), ['.', '..']);
+                        foreach ($files as $file) {
+                            $path = $dir . '/' . $file;
+                            is_dir($path) ? deleteDirectory($path) : unlink($path);
+                        }
+                        rmdir($dir);
+                    }
+                    deleteDirectory($tempDir);
+                    
+                    $message = 'Backup restored successfully! Website has been restored to: ' . date('M d, Y H:i', filemtime($backupPath));
+                } else {
+                    $error = 'Failed to open backup archive';
+                }
+            } catch (Exception $e) {
+                $error = 'Restore failed: ' . $e->getMessage();
+            }
+        } else {
+            $error = 'Backup file not found';
+        }
+    }
+}
+
 // Handle backup download
 if (isset($_GET['download'])) {
     $backupFile = basename($_GET['download']);
@@ -244,6 +368,13 @@ require_once 'views/header.php';
                             </div>
                         </div>
                         <div class="backup-actions">
+                            <form method="POST" style="display:inline;" onsubmit="return confirm('⚠️ WARNING: This will replace ALL current data with the backup!\n\nAre you absolutely sure you want to restore this backup?\n\nCurrent data will be lost!')">
+                                <input type="hidden" name="csrf_token" value="<?= Security::generateCSRFToken() ?>">
+                                <input type="hidden" name="backup_file" value="<?= Security::output($backup['name']) ?>">
+                                <button type="submit" name="restore_backup" class="btn btn-sm btn-warning">
+                                    🔄 Restore
+                                </button>
+                            </form>
                             <a href="?download=<?= urlencode($backup['name']) ?>" class="btn btn-sm btn-success">
                                 ⬇️ Download
                             </a>
@@ -419,6 +550,15 @@ require_once 'views/header.php';
 
 .btn-danger:hover {
     background: #dc2626;
+}
+
+.btn-warning {
+    background: #f59e0b;
+    color: white;
+}
+
+.btn-warning:hover {
+    background: #d97706;
 }
 </style>
 
