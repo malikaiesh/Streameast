@@ -29,17 +29,9 @@
                         <span class="nav-icon">🎥</span>
                         <span class="nav-label">All Videos</span>
                     </a>
-                    <a href="add-video.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'add-video.php' ? 'active' : '' ?>">
-                        <span class="nav-icon">➕</span>
-                        <span class="nav-label">Add Video</span>
-                    </a>
                     <a href="blogs.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'blogs.php' ? 'active' : '' ?>">
                         <span class="nav-icon">📝</span>
                         <span class="nav-label">Blog Posts</span>
-                    </a>
-                    <a href="add-blog.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'add-blog.php' ? 'active' : '' ?>">
-                        <span class="nav-icon">✍️</span>
-                        <span class="nav-label">Add Blog Post</span>
                     </a>
                 </div>
                 
