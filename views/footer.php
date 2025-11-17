@@ -27,16 +27,17 @@
                     <li><a href="/shorts.php">› Shorts</a></li>
                     <li><a href="/movies.php">› Movies</a></li>
                     <li><a href="/live.php">› Live Sports</a></li>
+                    <li><a href="/blog.php">› Blog</a></li>
                 </ul>
             </div>
             
             <div class="footer-column">
                 <h4>LEGAL</h4>
                 <ul class="footer-links">
-                    <li><a href="#privacy">› Privacy Policy</a></li>
-                    <li><a href="#terms">› Terms of Service</a></li>
-                    <li><a href="#dmca">› DMCA</a></li>
-                    <li><a href="#contact">› Contact Us</a></li>
+                    <li><a href="/privacy-policy.php">› Privacy Policy</a></li>
+                    <li><a href="/terms.php">› Terms of Service</a></li>
+                    <li><a href="/dmca.php">› DMCA</a></li>
+                    <li><a href="/contact.php">› Contact Us</a></li>
                 </ul>
             </div>
             
