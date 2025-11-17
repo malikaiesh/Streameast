@@ -1,7 +1,8 @@
 <?php
 // Configuration file
-ob_start();
-session_start();
+if (!session_id()) {
+    @session_start();
+}
 
 // Database configuration - Using SQLite for simplicity (can easily switch to MySQL)
 define('DB_TYPE', 'sqlite');
