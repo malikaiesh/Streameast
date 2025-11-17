@@ -88,6 +88,9 @@ include 'views/header.php';
                     <div class="related-info">
                         <h4><?= Security::output($rv['title']) ?></h4>
                         <div class="related-meta">
+                            <?php if (!empty($rv['category_name'])): ?>
+                                <span><?= Security::output($rv['category_name']) ?></span>
+                            <?php endif; ?>
                             <span><?= number_format($rv['views']) ?> views</span>
                         </div>
                     </div>
