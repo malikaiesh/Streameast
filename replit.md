@@ -1,8 +1,8 @@
-# YouTube Clone - Video Streaming Website
+# Stream East - Video Streaming Website
 
 ## Overview
 
-A complete YouTube-style video streaming platform built with pure PHP (no frameworks) that enables embedding and managing YouTube videos, Shorts, movies, and live sports streams. The application features a full-featured CMS admin panel for content management, SEO optimization, and monetization capabilities.
+A complete video streaming platform called **Stream East** built with pure PHP (no frameworks) that enables embedding and managing YouTube videos, Shorts, movies, and live sports streams. The application features a full-featured CMS admin panel for content management, SEO optimization, monetization capabilities, and a professional multi-section footer.
 
 ## User Preferences
 
@@ -28,6 +28,7 @@ Preferred communication style: Simple, everyday language.
 - Single video player page with embedded video, related videos, sharing, and reporting
 - Sticky header navigation with search functionality
 - Theme switching capability (dark/light modes via CSS variables)
+- Professional footer with social media links, quick navigation, legal links, and newsletter signup form
 
 ### Backend Architecture
 
