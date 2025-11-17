@@ -30,6 +30,9 @@ Thumbs.db
 .env
 .env.local
 
+# Security - Setup file should be deleted after use
+admin/setup.php
+
 # Temporary files
 /tmp/
 *.tmp
