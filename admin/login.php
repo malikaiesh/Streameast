@@ -63,7 +63,6 @@ $csrf_token = Security::generateCSRFToken();
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>
-            <p class="login-hint">Default: admin / admin123</p>
         </div>
     </div>
 </body>

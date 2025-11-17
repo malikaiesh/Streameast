@@ -105,9 +105,8 @@ CREATE TABLE IF NOT EXISTS reports (
     FOREIGN KEY (video_id) REFERENCES videos(id) ON DELETE CASCADE
 );
 
--- Insert default admin (username: admin, password: admin123)
-INSERT OR IGNORE INTO admin (username, password, email) VALUES 
-('admin', '$2y$10$x.7bd9E7O1iqAGGkqtGq6OWTx5GqjkR2GdodTLpAiQDc5OVFLlMZG', 'admin@example.com');
+-- Admin user will be created on first setup via environment variables
+-- Set ADMIN_USERNAME, ADMIN_PASSWORD, and ADMIN_EMAIL in your environment
 
 -- Insert default categories
 INSERT OR IGNORE INTO categories (name, slug, description) VALUES
