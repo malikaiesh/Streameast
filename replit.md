@@ -6,6 +6,39 @@ A complete video streaming platform called **Stream East** built with pure PHP (
 
 ## Recent Updates
 
+### November 17, 2025 - User Management & Enhanced Security Features
+- **Password Visibility Toggle:**
+  - Eye icon button on login page to show/hide password
+  - Smooth toggle animation with accessible icons
+  - Same functionality added to all password fields in admin panel
+- **Role-Based Access Control (RBAC):**
+  - Complete multi-user system with role hierarchy
+  - Four role levels: Super Admin, Admin, Editor, Viewer
+  - Role-specific permissions and access levels
+  - Database schema updated with role, full_name, status, last_login fields
+- **User Management System:**
+  - New "User Management" page in Security section
+  - Full CRUD operations for admin users
+  - Add new users with username, password, full name, email, and role
+  - Edit existing users (update details or change password)
+  - Delete users with confirmation (cannot delete yourself)
+  - Password visibility toggle in user forms
+  - User status management (active/inactive)
+  - Search and filter users by role
+  - Pagination for large user lists
+- **Account Settings:**
+  - Dedicated "Account Settings" page in Configuration section
+  - Update profile information (username, full name, email)
+  - Change password with current password verification
+  - Password strength validation (minimum 6 characters)
+  - View account details (ID, member since, last login, status)
+  - Password visibility toggles on all password fields
+- **Authentication Enhancements:**
+  - Last login tracking for all admin users
+  - Role information stored in session
+  - Automatic role assignment on login
+  - Enhanced login security with activity logging
+
 ### November 17, 2025 - Advanced Security System Implementation
 - **Comprehensive Security Management:**
   - New "Security" section in admin sidebar with dedicated dashboard
@@ -116,7 +149,7 @@ Preferred communication style: Simple, everyday language.
 
 **Admin Dashboard:**
 - Modern dark-themed interface with analytics and data visualization
-- Icon-based sidebar navigation with grouped sections (Dashboard, Content, Settings)
+- Icon-based sidebar navigation with grouped sections (Dashboard, Content, Security, Configuration)
 - 8 gradient stat cards showing real-time metrics:
   - Total Videos (purple), Shorts (blue), Total Views (green), Categories (pink)
   - Videos Today (indigo), Movies (orange), Live Sports (teal), Tags (cyan)
@@ -134,10 +167,19 @@ Preferred communication style: Simple, everyday language.
 - Complete backup system:
   - One-click full website backups (database + files)
   - Download backups as ZIP files
+  - Restore from backups with one click
   - Manage and delete old backups
   - Automatic inclusion of database, uploads, and thumbnails
+- User Management & Security:
+  - User Management page with role-based access control
+  - Account Settings for password and profile updates
+  - Security Dashboard with threat monitoring
+  - Activity Logs tracking all admin actions
+  - IP Management for blocking suspicious addresses
+  - Security Settings for configuring protection features
 - Real database data integration for all stats and charts
 - Responsive design for mobile and tablet views
+- Professional modal dialogs for forms and confirmations
 
 ### Backend Architecture
 
