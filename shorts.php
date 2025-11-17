@@ -1,0 +1,41 @@
+<?php
+require_once 'config/config.php';
+
+$video = new Video();
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+$videos = $video->getAll($page, VIDEOS_PER_PAGE, ['type' => 'short']);
+$totalVideos = $video->getCount(['type' => 'short']);
+$totalPages = ceil($totalVideos / VIDEOS_PER_PAGE);
+$pageTitle = 'Shorts';
+
+include 'views/header.php';
+?>
+
+<h2 class="page-title">📱 Shorts</h2>
+
+<div class="content-area">
+    <div class="videos-grid shorts-grid">
+        <?php if (empty($videos)): ?>
+            <div class="no-videos">
+                <h2>No shorts available</h2>
+            </div>
+        <?php else: ?>
+            <?php foreach ($videos as $v): ?>
+                <div class="video-card short-card">
+                    <a href="watch.php?v=<?= $v['slug'] ?>" class="video-thumbnail">
+                        <img src="<?= htmlspecialchars($v['thumbnail']) ?>" alt="<?= Security::output($v['title']) ?>">
+                    </a>
+                    <div class="video-info">
+                        <h3><a href="watch.php?v=<?= $v['slug'] ?>"><?= Security::output($v['title']) ?></a></h3>
+                        <div class="video-meta">
+                            <span class="views"><?= number_format($v['views']) ?> views</span>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
+</div>
+
+<?php include 'views/footer.php'; ?>
