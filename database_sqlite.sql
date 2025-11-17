@@ -105,6 +105,68 @@ CREATE TABLE IF NOT EXISTS reports (
     FOREIGN KEY (video_id) REFERENCES videos(id) ON DELETE CASCADE
 );
 
+-- Security Tables
+CREATE TABLE IF NOT EXISTS security_login_attempts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT,
+    ip_address TEXT NOT NULL,
+    user_agent TEXT,
+    success INTEGER DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS security_ip_blocks (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    ip_address TEXT UNIQUE NOT NULL,
+    reason TEXT,
+    block_type TEXT DEFAULT 'temporary',
+    expires_at DATETIME,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS security_activity_logs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    admin_id INTEGER,
+    action TEXT NOT NULL,
+    table_name TEXT,
+    record_id INTEGER,
+    details TEXT,
+    ip_address TEXT,
+    user_agent TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (admin_id) REFERENCES admin(id) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS security_settings (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    setting_key TEXT UNIQUE NOT NULL,
+    setting_value TEXT,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS security_sessions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    session_id TEXT UNIQUE NOT NULL,
+    admin_id INTEGER NOT NULL,
+    ip_address TEXT,
+    user_agent TEXT,
+    last_activity DATETIME DEFAULT CURRENT_TIMESTAMP,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (admin_id) REFERENCES admin(id) ON DELETE CASCADE
+);
+
+-- Insert default security settings
+INSERT OR IGNORE INTO security_settings (setting_key, setting_value) VALUES
+('max_login_attempts', '5'),
+('login_lockout_time', '900'),
+('session_timeout', '1800'),
+('enable_rate_limiting', '1'),
+('rate_limit_requests', '100'),
+('rate_limit_window', '60'),
+('enable_2fa', '0'),
+('enable_ip_whitelist', '0'),
+('security_headers_enabled', '1');
+
 -- Admin user will be created on first setup via environment variables
 -- Set ADMIN_USERNAME, ADMIN_PASSWORD, and ADMIN_EMAIL in your environment
 
