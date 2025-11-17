@@ -33,6 +33,10 @@
                         <span class="nav-icon">📝</span>
                         <span class="nav-label">Blog Posts</span>
                     </a>
+                    <a href="pages.php" class="nav-item <?= in_array(basename($_SERVER['PHP_SELF']), ['pages.php', 'edit-page.php']) ? 'active' : '' ?>">
+                        <span class="nav-icon">📄</span>
+                        <span class="nav-label">Pages</span>
+                    </a>
                 </div>
                 
                 <div class="nav-section">
