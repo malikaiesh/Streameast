@@ -16,8 +16,16 @@ define('DB_PATH', __DIR__ . '/../database.db');
 // define('DB_PASS', '');
 // define('DB_SOCKET', '/tmp/mysql.sock'); // For Replit
 
-// Site configuration - Auto-detect HTTPS
-$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443 ? 'https://' : 'http://';
+// Site configuration - Auto-detect HTTPS (works with Replit proxy)
+if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
+    $protocol = $_SERVER['HTTP_X_FORWARDED_PROTO'] . '://';
+} elseif (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+    $protocol = 'https://';
+} elseif ($_SERVER['SERVER_PORT'] == 443) {
+    $protocol = 'https://';
+} else {
+    $protocol = 'https://';
+}
 define('SITE_URL', $protocol . $_SERVER['HTTP_HOST']);
 define('BASE_PATH', dirname(__DIR__));
 define('UPLOAD_PATH', BASE_PATH . '/uploads/');

@@ -46,8 +46,8 @@
     <?php endif; ?>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="<?= SITE_URL ?>/assets/favicon.png">
-    <link rel="shortcut icon" type="image/png" href="<?= SITE_URL ?>/assets/favicon.png">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
     
     <!-- Schema.org VideoObject -->
     <?php if (isset($video)): ?>
@@ -84,7 +84,8 @@
     }
     ?>
     
-    <link rel="stylesheet" href="<?= SITE_URL ?>/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="/assets/js/main.js" defer></script>
 </head>
 <body class="theme-<?= $settings->get('theme_mode', 'dark') ?>">
     <!-- Custom Body Top Code -->
