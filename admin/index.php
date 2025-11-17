@@ -11,6 +11,12 @@ $totalViews = $db->fetchOne("SELECT SUM(views) as total FROM videos")['total'] ?
 $totalCategories = $db->fetchOne("SELECT COUNT(*) as count FROM categories")['count'];
 $totalTags = $db->fetchOne("SELECT COUNT(*) as count FROM tags")['count'];
 
+// Get video type counts
+$shortsCount = $db->fetchOne("SELECT COUNT(*) as count FROM videos WHERE video_type = 'short'")['count'];
+$moviesCount = $db->fetchOne("SELECT COUNT(*) as count FROM videos WHERE video_type = 'movie'")['count'];
+$liveCount = $db->fetchOne("SELECT COUNT(*) as count FROM videos WHERE video_type = 'live'")['count'];
+$todayVideos = $db->fetchOne("SELECT COUNT(*) as count FROM videos WHERE DATE(created_at) = CURRENT_DATE")['count'];
+
 // Get video type distribution
 $videoTypes = $db->fetchAll("SELECT video_type, COUNT(*) as count FROM videos GROUP BY video_type");
 
@@ -49,39 +55,67 @@ include 'views/header.php';
 <!-- Modern Stats Cards -->
 <div class="stats-grid">
     <div class="stat-card gradient-purple">
-        <div class="stat-icon">🎥</div>
+        <div class="stat-icon-bg">🎥</div>
         <div class="stat-details">
+            <p class="stat-label">TOTAL VIDEOS</p>
             <h3><?= number_format($totalVideos) ?></h3>
-            <p>Total Videos</p>
         </div>
-        <div class="stat-change">+12%</div>
-    </div>
-    
-    <div class="stat-card gradient-blue">
-        <div class="stat-icon">👁️</div>
-        <div class="stat-details">
-            <h3><?= number_format($totalViews) ?></h3>
-            <p>Total Views</p>
-        </div>
-        <div class="stat-change">+24%</div>
-    </div>
-    
-    <div class="stat-card gradient-green">
-        <div class="stat-icon">📁</div>
-        <div class="stat-details">
-            <h3><?= number_format($totalCategories) ?></h3>
-            <p>Categories</p>
-        </div>
-        <div class="stat-change">Active</div>
     </div>
     
     <div class="stat-card gradient-pink">
-        <div class="stat-icon">🏷️</div>
+        <div class="stat-icon-bg">📚</div>
         <div class="stat-details">
-            <h3><?= number_format($totalTags) ?></h3>
-            <p>Total Tags</p>
+            <p class="stat-label">TOTAL SHORTS</p>
+            <h3><?= number_format($shortsCount) ?></h3>
         </div>
-        <div class="stat-change">Active</div>
+    </div>
+    
+    <div class="stat-card gradient-cyan">
+        <div class="stat-icon-bg">👁️</div>
+        <div class="stat-details">
+            <p class="stat-label">TOTAL VIEWS</p>
+            <h3><?= number_format($totalViews) ?></h3>
+        </div>
+    </div>
+    
+    <div class="stat-card gradient-green">
+        <div class="stat-icon-bg">✓</div>
+        <div class="stat-details">
+            <p class="stat-label">CATEGORIES</p>
+            <h3><?= number_format($totalCategories) ?></h3>
+        </div>
+    </div>
+    
+    <div class="stat-card gradient-orange">
+        <div class="stat-icon-bg">📊</div>
+        <div class="stat-details">
+            <p class="stat-label">VIDEOS TODAY</p>
+            <h3><?= number_format($todayVideos) ?></h3>
+        </div>
+    </div>
+    
+    <div class="stat-card gradient-blue">
+        <div class="stat-icon-bg">📄</div>
+        <div class="stat-details">
+            <p class="stat-label">MOVIES</p>
+            <h3><?= number_format($moviesCount) ?></h3>
+        </div>
+    </div>
+    
+    <div class="stat-card gradient-indigo">
+        <div class="stat-icon-bg">⏱️</div>
+        <div class="stat-details">
+            <p class="stat-label">LIVE SPORTS</p>
+            <h3><?= number_format($liveCount) ?></h3>
+        </div>
+    </div>
+    
+    <div class="stat-card gradient-rose">
+        <div class="stat-icon-bg">🏷️</div>
+        <div class="stat-details">
+            <p class="stat-label">TOTAL TAGS</p>
+            <h3><?= number_format($totalTags) ?></h3>
+        </div>
     </div>
 </div>
 
