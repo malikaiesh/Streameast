@@ -52,3 +52,8 @@ spl_autoload_register(function ($class_name) {
         require_once $file;
     }
 });
+
+// Apply security headers
+if (class_exists('Security')) {
+    Security::applySecurityHeaders();
+}

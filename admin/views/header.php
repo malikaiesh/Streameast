@@ -64,6 +64,26 @@
                 </div>
                 
                 <div class="nav-section">
+                    <div class="section-title">Security</div>
+                    <a href="security-dashboard.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'security-dashboard.php' ? 'active' : '' ?>">
+                        <span class="nav-icon">🔒</span>
+                        <span class="nav-label">Security Dashboard</span>
+                    </a>
+                    <a href="security-activity.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'security-activity.php' ? 'active' : '' ?>">
+                        <span class="nav-icon">📊</span>
+                        <span class="nav-label">Activity Logs</span>
+                    </a>
+                    <a href="security-ip-management.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'security-ip-management.php' ? 'active' : '' ?>">
+                        <span class="nav-icon">⛔</span>
+                        <span class="nav-label">IP Management</span>
+                    </a>
+                    <a href="security-settings.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'security-settings.php' ? 'active' : '' ?>">
+                        <span class="nav-icon">⚙️</span>
+                        <span class="nav-label">Security Settings</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
                     <div class="section-title">Configuration</div>
                     <a href="custom-code.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'custom-code.php' ? 'active' : '' ?>">
                         <span class="nav-icon">💻</span>
