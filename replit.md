@@ -14,6 +14,7 @@ A complete video streaming platform called **Stream East** built with pure PHP (
   - Delete pages with confirmation
   - Database-driven pages with automatic slug generation
   - HTML sanitization for security (using production-ready DOM sanitizer)
+  - Fixed session authentication using Security::requireAdmin() for consistent behavior
 - **Database:**
   - New `pages` table to store all website pages
   - Fields: id, title, slug, content, meta_description, status, created_at, updated_at
@@ -22,6 +23,7 @@ A complete video streaming platform called **Stream East** built with pure PHP (
   - Pages can be edited from admin panel without modifying code
   - Automatic "last updated" dates based on database timestamps
   - SEO-friendly with meta descriptions
+  - Favicon support added to all legal pages
 - **Admin Interface:**
   - New "Pages" menu item in Content Management section
   - Pages list view with actions (View, Edit, Delete)

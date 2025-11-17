@@ -41,6 +41,8 @@ $pageTitle = $pageData['title'] . ' - Stream East';
     <?php if (!empty($pageData['meta_description'])): ?>
         <meta name="description" content="<?= Security::output($pageData['meta_description']) ?>">
     <?php endif; ?>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="assets/favicon.png">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
