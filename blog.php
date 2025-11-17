@@ -1,5 +1,14 @@
 <?php
 require_once 'config/config.php';
+require_once 'includes/Blog.php';
+
+$blog = new Blog();
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$perPage = 12;
+
+$posts = $blog->getPublished($page, $perPage);
+$totalPosts = $blog->count('published');
+$totalPages = ceil($totalPosts / $perPage);
 
 $pageTitle = 'Blog';
 include 'views/header.php';
@@ -108,96 +117,49 @@ include 'views/header.php';
     <p style="color: var(--text-secondary); margin-top: 8px;">Stay updated with the latest news, tips, and insights about video streaming</p>
 </div>
 
-<div class="blog-grid">
-    <article class="blog-card">
-        <img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=800&h=600&fit=crop" alt="Blog post" class="blog-image">
-        <div class="blog-content">
-            <span class="blog-category">Streaming</span>
-            <h2 class="blog-title">The Future of Video Streaming in 2025</h2>
-            <p class="blog-excerpt">Discover the latest trends in video streaming technology and how Stream East is leading the way with innovative features...</p>
-            <div class="blog-meta">
-                <span class="blog-date">📅 Nov 17, 2025</span>
-                <span>•</span>
-                <span>5 min read</span>
-            </div>
-            <a href="#" class="read-more">Read More →</a>
-        </div>
-    </article>
-
-    <article class="blog-card">
-        <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?w=800&h=600&fit=crop" alt="Blog post" class="blog-image">
-        <div class="blog-content">
-            <span class="blog-category">Technology</span>
-            <h2 class="blog-title">How to Get the Best Streaming Quality</h2>
-            <p class="blog-excerpt">Learn expert tips and tricks to optimize your streaming experience and enjoy crystal-clear video quality on any device...</p>
-            <div class="blog-meta">
-                <span class="blog-date">📅 Nov 15, 2025</span>
-                <span>•</span>
-                <span>4 min read</span>
-            </div>
-            <a href="#" class="read-more">Read More →</a>
-        </div>
-    </article>
-
-    <article class="blog-card">
-        <img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=800&h=600&fit=crop" alt="Blog post" class="blog-image">
-        <div class="blog-content">
-            <span class="blog-category">Entertainment</span>
-            <h2 class="blog-title">Top 10 Must-Watch Movies This Month</h2>
-            <p class="blog-excerpt">Our curated list of the best movies currently streaming on Stream East. Don't miss these incredible films...</p>
-            <div class="blog-meta">
-                <span class="blog-date">📅 Nov 12, 2025</span>
-                <span>•</span>
-                <span>6 min read</span>
-            </div>
-            <a href="#" class="read-more">Read More →</a>
-        </div>
-    </article>
-
-    <article class="blog-card">
-        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&h=600&fit=crop" alt="Blog post" class="blog-image">
-        <div class="blog-content">
-            <span class="blog-category">Sports</span>
-            <h2 class="blog-title">Live Sports Streaming: A Complete Guide</h2>
-            <p class="blog-excerpt">Everything you need to know about watching live sports on Stream East, including schedules, quality settings, and more...</p>
-            <div class="blog-meta">
-                <span class="blog-date">📅 Nov 10, 2025</span>
-                <span>•</span>
-                <span>7 min read</span>
-            </div>
-            <a href="#" class="read-more">Read More →</a>
-        </div>
-    </article>
-
-    <article class="blog-card">
-        <img src="https://images.unsplash.com/photo-1533563906091-fdfdffc3e3c4?w=800&h=600&fit=crop" alt="Blog post" class="blog-image">
-        <div class="blog-content">
-            <span class="blog-category">Updates</span>
-            <h2 class="blog-title">New Features Coming to Stream East</h2>
-            <p class="blog-excerpt">We're excited to announce several new features that will enhance your streaming experience. Here's what's coming soon...</p>
-            <div class="blog-meta">
-                <span class="blog-date">📅 Nov 8, 2025</span>
-                <span>•</span>
-                <span>3 min read</span>
-            </div>
-            <a href="#" class="read-more">Read More →</a>
-        </div>
-    </article>
-
-    <article class="blog-card">
-        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&h=600&fit=crop" alt="Blog post" class="blog-image">
-        <div class="blog-content">
-            <span class="blog-category">Tutorial</span>
-            <h2 class="blog-title">Creating the Perfect Watchlist</h2>
-            <p class="blog-excerpt">Organize your favorite content and never miss a new release with these watchlist management tips and best practices...</p>
-            <div class="blog-meta">
-                <span class="blog-date">📅 Nov 5, 2025</span>
-                <span>•</span>
-                <span>5 min read</span>
-            </div>
-            <a href="#" class="read-more">Read More →</a>
-        </div>
-    </article>
+<?php if (empty($posts)): ?>
+<div class="empty-state" style="text-align: center; padding: 80px 20px; margin: 40px auto; max-width: 600px;">
+    <div style="font-size: 64px; margin-bottom: 16px;">📝</div>
+    <h3 style="font-size: 24px; margin-bottom: 12px;">No blog posts yet</h3>
+    <p style="color: var(--text-secondary);">Check back soon for the latest updates and articles!</p>
 </div>
+<?php else: ?>
+<div class="blog-grid">
+    <?php foreach ($posts as $post): ?>
+    <article class="blog-card">
+        <?php if ($post['featured_image']): ?>
+            <img src="<?= Security::output($post['featured_image']) ?>" alt="<?= Security::output($post['title']) ?>" class="blog-image">
+        <?php else: ?>
+            <div class="blog-image" style="display: flex; align-items: center; justify-content: center; font-size: 48px; color: white;">
+                📝
+            </div>
+        <?php endif; ?>
+        <div class="blog-content">
+            <span class="blog-category"><?= Security::output($post['category'] ?? 'General') ?></span>
+            <h2 class="blog-title"><?= Security::output($post['title']) ?></h2>
+            <p class="blog-excerpt"><?= Security::output($post['excerpt'] ?? substr(strip_tags($post['content']), 0, 150) . '...') ?></p>
+            <div class="blog-meta">
+                <span class="blog-date">📅 <?= $post['published_at'] ? date('M d, Y', strtotime($post['published_at'])) : date('M d, Y', strtotime($post['created_at'])) ?></span>
+                <span>•</span>
+                <span><?= Security::output($post['author_name'] ?? 'Admin') ?></span>
+            </div>
+            <a href="blog-post.php?slug=<?= Security::output($post['slug']) ?>" class="read-more">Read More →</a>
+        </div>
+    </article>
+    <?php endforeach; ?>
+</div>
+
+<?php if ($totalPages > 1): ?>
+<div class="pagination" style="display: flex; gap: 8px; justify-content: center; margin-top: 40px; padding: 20px 0;">
+    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+        <a href="?page=<?= $i ?>" 
+           class="page-link" 
+           style="padding: 10px 16px; background: var(--bg-secondary); color: var(--text-primary); text-decoration: none; border-radius: 8px; font-weight: 600; border: 1px solid var(--border); <?= $i === $page ? 'background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;' : '' ?>">
+            <?= $i ?>
+        </a>
+    <?php endfor; ?>
+</div>
+<?php endif; ?>
+<?php endif; ?>
 
 <?php include 'views/footer.php'; ?>

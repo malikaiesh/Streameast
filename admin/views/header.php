@@ -12,19 +12,77 @@
     <div class="admin-wrapper">
         <aside class="admin-sidebar">
             <div class="sidebar-header">
-                <h2>Admin Panel</h2>
+                <div class="sidebar-logo">
+                    <span class="logo-icon">🎬</span>
+                    <h2>Stream East</h2>
+                </div>
             </div>
             <nav class="sidebar-nav">
-                <a href="index.php" class="nav-item">📊 Dashboard</a>
-                <a href="videos.php" class="nav-item">🎥 All Videos</a>
-                <a href="add-video.php" class="nav-item">➕ Add Video</a>
-                <a href="categories.php" class="nav-item">📁 Categories</a>
-                <a href="tags.php" class="nav-item">🏷️ Tags</a>
-                <a href="analytics.php" class="nav-item">📈 Analytics</a>
-                <a href="ads.php" class="nav-item">💰 Ads Management</a>
-                <a href="custom-code.php" class="nav-item">💻 Custom Code</a>
-                <a href="settings.php" class="nav-item">⚙️ Settings</a>
-                <a href="logout.php" class="nav-item">🚪 Logout</a>
+                <a href="index.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : '' ?>">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-label">Dashboard</span>
+                </a>
+                
+                <div class="nav-section">
+                    <div class="section-title">Content Management</div>
+                    <a href="videos.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'videos.php' ? 'active' : '' ?>">
+                        <span class="nav-icon">🎥</span>
+                        <span class="nav-label">All Videos</span>
+                    </a>
+                    <a href="add-video.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'add-video.php' ? 'active' : '' ?>">
+                        <span class="nav-icon">➕</span>
+                        <span class="nav-label">Add Video</span>
+                    </a>
+                    <a href="blogs.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'blogs.php' ? 'active' : '' ?>">
+                        <span class="nav-icon">📝</span>
+                        <span class="nav-label">Blog Posts</span>
+                    </a>
+                    <a href="add-blog.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'add-blog.php' ? 'active' : '' ?>">
+                        <span class="nav-icon">✍️</span>
+                        <span class="nav-label">Add Blog Post</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="section-title">Organization</div>
+                    <a href="categories.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'categories.php' ? 'active' : '' ?>">
+                        <span class="nav-icon">📁</span>
+                        <span class="nav-label">Categories</span>
+                    </a>
+                    <a href="tags.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'tags.php' ? 'active' : '' ?>">
+                        <span class="nav-icon">🏷️</span>
+                        <span class="nav-label">Tags</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="section-title">Analytics & Monetization</div>
+                    <a href="analytics.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'analytics.php' ? 'active' : '' ?>">
+                        <span class="nav-icon">📈</span>
+                        <span class="nav-label">Analytics</span>
+                    </a>
+                    <a href="ads.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'ads.php' ? 'active' : '' ?>">
+                        <span class="nav-icon">💰</span>
+                        <span class="nav-label">Ads Management</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="section-title">Configuration</div>
+                    <a href="custom-code.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'custom-code.php' ? 'active' : '' ?>">
+                        <span class="nav-icon">💻</span>
+                        <span class="nav-label">Custom Code</span>
+                    </a>
+                    <a href="settings.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'settings.php' ? 'active' : '' ?>">
+                        <span class="nav-icon">⚙️</span>
+                        <span class="nav-label">Settings</span>
+                    </a>
+                </div>
+                
+                <a href="logout.php" class="nav-item nav-logout">
+                    <span class="nav-icon">🚪</span>
+                    <span class="nav-label">Logout</span>
+                </a>
             </nav>
         </aside>
         <main class="admin-content">
