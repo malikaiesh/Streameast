@@ -269,8 +269,9 @@ body {
 /* Watch Page */
 .watch-page {
     display: grid;
-    grid-template-columns: 1fr 400px;
-    gap: 24px;
+    grid-template-columns: 1fr 420px;
+    gap: 12px;
+    align-items: start;
 }
 
 .video-player {
@@ -350,16 +351,19 @@ body {
 
 /* Related Videos - YouTube Style */
 .watch-page .sidebar {
-    background: var(--bg-primary);
-    padding: 24px 12px;
+    background: rgba(26, 35, 50, 0.4);
+    padding: 20px 8px;
+    border-radius: 12px;
+    border: 1px solid rgba(102, 126, 234, 0.15);
 }
 
 .watch-page .sidebar h3 {
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 700;
     margin-bottom: 16px;
     padding: 0 12px;
     color: var(--text-primary);
+    letter-spacing: 0.3px;
 }
 
 .related-videos {
@@ -384,12 +388,13 @@ body {
 
 .related-thumbnail {
     position: relative;
-    width: 168px;
-    min-width: 168px;
+    width: 180px;
+    min-width: 180px;
     aspect-ratio: 16/9;
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
     background: var(--bg-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .related-thumbnail img {
