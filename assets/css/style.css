@@ -992,18 +992,26 @@ body.theme-light .theme-icon-dark {
 
 .social-icons {
     display: flex;
-    gap: 12px;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 12px;
 }
 
 .social-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
     text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.social-icon svg {
+    width: 22px;
+    height: 22px;
 }
 
 .social-icon.facebook {
@@ -1048,7 +1056,67 @@ body.theme-light .theme-icon-dark {
 
 .social-icon:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* App Download Section */
+.app-download-section {
+    margin-top: 24px;
+}
+
+.app-download-section h4 {
+    margin-bottom: 16px;
+}
+
+.app-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.app-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    min-width: 180px;
+}
+
+.app-badge:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.app-icon {
+    font-size: 32px;
+    line-height: 1;
+}
+
+.app-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.app-text small {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.app-text strong {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
 }
 
 .footer-links {

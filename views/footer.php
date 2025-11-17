@@ -61,6 +61,64 @@
                     </div>
                 </div>
                 <?php endif; ?>
+                
+                <?php
+                // App download links
+                $app_links = [
+                    'android' => $settings->get('app_android'),
+                    'ios' => $settings->get('app_ios'),
+                    'windows' => $settings->get('app_windows'),
+                    'macos' => $settings->get('app_macos'),
+                ];
+                $has_apps = array_filter($app_links);
+                
+                if ($has_apps):
+                ?>
+                <div class="app-download-section">
+                    <h4>DOWNLOAD OUR APP</h4>
+                    <div class="app-buttons">
+                        <?php if ($app_links['android']): ?>
+                        <a href="<?= Security::output($app_links['android']) ?>" target="_blank" rel="noopener" class="app-badge">
+                            <span class="app-icon">📱</span>
+                            <div class="app-text">
+                                <small>GET IT ON</small>
+                                <strong>Google Play</strong>
+                            </div>
+                        </a>
+                        <?php endif; ?>
+                        
+                        <?php if ($app_links['ios']): ?>
+                        <a href="<?= Security::output($app_links['ios']) ?>" target="_blank" rel="noopener" class="app-badge">
+                            <span class="app-icon">🍎</span>
+                            <div class="app-text">
+                                <small>Download on the</small>
+                                <strong>App Store</strong>
+                            </div>
+                        </a>
+                        <?php endif; ?>
+                        
+                        <?php if ($app_links['windows']): ?>
+                        <a href="<?= Security::output($app_links['windows']) ?>" target="_blank" rel="noopener" class="app-badge">
+                            <span class="app-icon">🪟</span>
+                            <div class="app-text">
+                                <small>GET IT ON</small>
+                                <strong>Windows</strong>
+                            </div>
+                        </a>
+                        <?php endif; ?>
+                        
+                        <?php if ($app_links['macos']): ?>
+                        <a href="<?= Security::output($app_links['macos']) ?>" target="_blank" rel="noopener" class="app-badge">
+                            <span class="app-icon">🍏</span>
+                            <div class="app-text">
+                                <small>Download on the</small>
+                                <strong>Mac App Store</strong>
+                            </div>
+                        </a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <?php endif; ?>
             </div>
             
             <div class="footer-column">
