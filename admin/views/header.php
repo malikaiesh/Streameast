@@ -77,6 +77,10 @@
                         <span class="nav-icon">⛔</span>
                         <span class="nav-label">IP Management</span>
                     </a>
+                    <a href="security-users.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'security-users.php' ? 'active' : '' ?>">
+                        <span class="nav-icon">👥</span>
+                        <span class="nav-label">User Management</span>
+                    </a>
                     <a href="security-settings.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'security-settings.php' ? 'active' : '' ?>">
                         <span class="nav-icon">⚙️</span>
                         <span class="nav-label">Security Settings</span>
@@ -85,6 +89,10 @@
                 
                 <div class="nav-section">
                     <div class="section-title">Configuration</div>
+                    <a href="account-settings.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'account-settings.php' ? 'active' : '' ?>">
+                        <span class="nav-icon">👤</span>
+                        <span class="nav-label">Account Settings</span>
+                    </a>
                     <a href="custom-code.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'custom-code.php' ? 'active' : '' ?>">
                         <span class="nav-icon">💻</span>
                         <span class="nav-label">Custom Code</span>

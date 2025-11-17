@@ -31,6 +31,10 @@ if (Security::isIPBlocked()) {
             Security::logLoginAttempt($username, true);
             $_SESSION['admin_id'] = $admin['id'];
             $_SESSION['admin_username'] = $admin['username'];
+            $_SESSION['admin_role'] = $admin['role'] ?? 'admin';
+            
+            // Update last login time
+            $db->query("UPDATE admin SET last_login = datetime('now') WHERE id = ?", [$admin['id']]);
             
             // Log successful login activity
             Security::logActivity('Admin Login', null, null, 'Logged in successfully');
