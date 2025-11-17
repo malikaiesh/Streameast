@@ -122,12 +122,12 @@ class Security {
         // Try to insert, if duplicate then update
         $existing = $db->fetchOne("SELECT id FROM security_ip_blocks WHERE ip_address = ?", [$ip]);
         if ($existing) {
-            return $db->execute(
+            return $db->query(
                 "UPDATE security_ip_blocks SET reason = ?, block_type = ?, expires_at = ? WHERE ip_address = ?",
                 [$reason, $type, $expiresAt, $ip]
             );
         } else {
-            return $db->execute(
+            return $db->query(
                 "INSERT INTO security_ip_blocks (ip_address, reason, block_type, expires_at) VALUES (?, ?, ?, ?)",
                 [$ip, $reason, $type, $expiresAt]
             );
@@ -137,13 +137,13 @@ class Security {
     // Unblock IP address
     public static function unblockIP($ip) {
         $db = Database::getInstance();
-        return $db->execute("DELETE FROM security_ip_blocks WHERE ip_address = ?", [$ip]);
+        return $db->query("DELETE FROM security_ip_blocks WHERE ip_address = ?", [$ip]);
     }
 
     // Log login attempt
     public static function logLoginAttempt($username, $success = false) {
         $db = Database::getInstance();
-        $db->execute(
+        $db->query(
             "INSERT INTO security_login_attempts (username, ip_address, user_agent, success) VALUES (?, ?, ?, ?)",
             [$username, self::getClientIP(), self::getUserAgent(), $success ? 1 : 0]
         );
@@ -189,7 +189,7 @@ class Security {
         }
         
         $db = Database::getInstance();
-        $db->execute(
+        $db->query(
             "INSERT INTO security_activity_logs (admin_id, action, table_name, record_id, details, ip_address, user_agent) VALUES (?, ?, ?, ?, ?, ?, ?)",
             [
                 $_SESSION['admin_id'],
@@ -216,12 +216,12 @@ class Security {
         $existing = $db->fetchOne("SELECT id FROM security_settings WHERE setting_key = ?", [$key]);
         
         if ($existing) {
-            return $db->execute(
+            return $db->query(
                 "UPDATE security_settings SET setting_value = ?, updated_at = datetime('now') WHERE setting_key = ?",
                 [$value, $key]
             );
         } else {
-            return $db->execute(
+            return $db->query(
                 "INSERT INTO security_settings (setting_key, setting_value) VALUES (?, ?)",
                 [$key, $value]
             );
@@ -291,7 +291,7 @@ class Security {
     // Clean expired IP blocks
     public static function cleanExpiredBlocks() {
         $db = Database::getInstance();
-        return $db->execute(
+        return $db->query(
             "DELETE FROM security_ip_blocks WHERE block_type = 'temporary' AND expires_at < datetime('now')"
         );
     }
