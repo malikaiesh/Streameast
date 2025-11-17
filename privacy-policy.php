@@ -2,7 +2,7 @@
 require_once 'config/config.php';
 require_once 'includes/Settings.php';
 
-$settings = Settings::getInstance();
+$settings = new Settings();
 $siteName = $settings->get('site_name', 'Stream East');
 
 $pageTitle = 'Privacy Policy - ' . $siteName;

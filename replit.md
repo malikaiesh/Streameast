@@ -4,6 +4,25 @@
 
 A complete video streaming platform called **Stream East** built with pure PHP (no frameworks) that enables embedding and managing YouTube videos, Shorts, movies, and live sports streams. The application features a full-featured CMS admin panel for content management, SEO optimization, monetization capabilities, a professional multi-section footer, and a YouTube-style Shorts carousel section on the homepage.
 
+## Recent Updates
+
+### November 17, 2025 - Legal Pages & Contact System
+- **Created Legal Pages:**
+  - Privacy Policy (`privacy-policy.php`) - Comprehensive privacy information covering data collection, cookies, third-party services, and user rights
+  - Terms of Service (`terms.php`) - Complete terms covering user conduct, intellectual property, disclaimers, and liability
+  - DMCA Policy (`dmca.php`) - Copyright policy with takedown procedures and counter-notice information
+  - Contact Us (`contact.php`) - Full-featured contact form with subject selection, multiple contact methods, and FAQ section
+- **Footer Updates:**
+  - Added functional links to all legal pages in the "LEGAL" section
+  - Added Blog link to "QUICK LINKS" section
+  - All footer links now properly navigate to their respective pages
+- **Styling:**
+  - Professional legal page styling with dark/light theme support
+  - Responsive contact form with validation
+  - Modern card-based layout for contact information
+  - FAQ grid section on contact page
+  - Alert messages for form submission feedback
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
