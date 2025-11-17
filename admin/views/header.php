@@ -65,6 +65,10 @@
                         <span class="nav-icon">💻</span>
                         <span class="nav-label">Custom Code</span>
                     </a>
+                    <a href="backup.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'backup.php' ? 'active' : '' ?>">
+                        <span class="nav-icon">💾</span>
+                        <span class="nav-label">Backup</span>
+                    </a>
                     <a href="settings.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'settings.php' ? 'active' : '' ?>">
                         <span class="nav-icon">⚙️</span>
                         <span class="nav-label">Settings</span>
