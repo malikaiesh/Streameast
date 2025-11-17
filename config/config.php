@@ -17,16 +17,24 @@ define('DB_PATH', __DIR__ . '/../database.db');
 // define('DB_SOCKET', '/tmp/mysql.sock'); // For Replit
 
 // Site configuration - Auto-detect HTTPS (works with Replit proxy)
-if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
-    $protocol = $_SERVER['HTTP_X_FORWARDED_PROTO'] . '://';
-} elseif (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+if (php_sapi_name() === 'cli') {
+    // Running from command line
     $protocol = 'https://';
-} elseif ($_SERVER['SERVER_PORT'] == 443) {
-    $protocol = 'https://';
+    $host = 'localhost';
 } else {
-    $protocol = 'https://';
+    // Running as web server
+    if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
+        $protocol = $_SERVER['HTTP_X_FORWARDED_PROTO'] . '://';
+    } elseif (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+        $protocol = 'https://';
+    } elseif (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443) {
+        $protocol = 'https://';
+    } else {
+        $protocol = 'https://';
+    }
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
 }
-define('SITE_URL', $protocol . $_SERVER['HTTP_HOST']);
+define('SITE_URL', $protocol . $host);
 define('BASE_PATH', dirname(__DIR__));
 define('UPLOAD_PATH', BASE_PATH . '/uploads/');
 define('THUMBNAIL_PATH', BASE_PATH . '/assets/thumbnails/');

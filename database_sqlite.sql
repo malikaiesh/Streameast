@@ -5,7 +5,12 @@ CREATE TABLE IF NOT EXISTS admin (
     username TEXT UNIQUE NOT NULL,
     password TEXT NOT NULL,
     email TEXT,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    role TEXT DEFAULT 'admin',
+    full_name TEXT,
+    status TEXT DEFAULT 'active',
+    last_login DATETIME,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME
 );
 
 CREATE TABLE IF NOT EXISTS users (
@@ -191,11 +196,3 @@ INSERT OR IGNORE INTO site_settings (setting_key, setting_value) VALUES
 ('videos_per_page', '12'),
 ('adsense_code', ''),
 ('google_analytics', '');
-
--- Add role-based access control columns to admin table
--- Role types: super_admin, admin, editor, viewer
-ALTER TABLE admin ADD COLUMN role TEXT DEFAULT 'admin';
-ALTER TABLE admin ADD COLUMN full_name TEXT;
-ALTER TABLE admin ADD COLUMN status TEXT DEFAULT 'active';
-ALTER TABLE admin ADD COLUMN last_login DATETIME;
-ALTER TABLE admin ADD COLUMN updated_at DATETIME DEFAULT CURRENT_TIMESTAMP;
