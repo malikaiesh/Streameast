@@ -99,11 +99,19 @@
             </a>
         </div>
         
-        <div class="header-search">
+        <div class="header-center">
             <form action="<?= SITE_URL ?>/index.php" method="GET" class="search-form">
                 <input type="search" name="s" placeholder="Search videos..." value="<?= Security::output($_GET['s'] ?? '') ?>">
                 <button type="submit">🔍</button>
             </form>
+        </div>
+        
+        <div class="header-right">
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+                <span class="theme-icon-dark">🌙</span>
+                <span class="theme-icon-light">☀️</span>
+            </button>
+            <a href="<?= SITE_URL ?>/admin/login.php" class="login-btn">Login</a>
         </div>
     </header>
     
@@ -115,6 +123,7 @@
                 <a href="<?= SITE_URL ?>/shorts.php" class="nav-item">📱 Shorts</a>
                 <a href="<?= SITE_URL ?>/movies.php" class="nav-item">🎬 Movies</a>
                 <a href="<?= SITE_URL ?>/live.php" class="nav-item">📺 Live Sports</a>
+                <a href="<?= SITE_URL ?>/blog.php" class="nav-item">📝 Blog</a>
                 <hr>
                 <h4>Categories</h4>
                 <?php
