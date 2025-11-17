@@ -1,0 +1,249 @@
+FULL PROFESSIONAL PROMPT FOR A YOUTUBE-CLONE WEBSITE (PHP)
+
+Prompt:
+
+I want to build a complete YouTube-style video streaming website in PHP.
+Create full source code, database structure, folder architecture, and system documentation.
+Below are all the required features—DO NOT miss anything.
+
+🔥 1. Core Purpose
+
+Build a YouTube-clone website where I can embed:
+
+YouTube videos
+
+YouTube Shorts
+
+Movies (via embed links or iframes)
+
+Live Sports streams
+Users should be able to watch these videos directly from my website.
+
+🔥 2. Technology Stack
+
+Frontend: HTML5, CSS3, JavaScript
+
+Backend: PHP (OOP preferred)
+
+Database: MySQL
+
+Security: CSRF tokens, XSS protection, SQL injection prevention
+
+Framework: Plain PHP (NO Laravel)
+
+🔥 3. Pages Required
+User Area
+
+Homepage with video categories
+
+Trending page
+
+Shorts page
+
+Movies page
+
+Live sports page
+
+Search page (with live/instant search)
+
+Single video page with:
+
+Title, description
+
+Suggested videos
+
+Share button
+
+Report button
+
+Watch next
+
+User login / signup (optional)
+
+Admin Panel (Full CMS in PHP)
+
+Admin dashboard
+
+Add video (URL embed only)
+
+Add Shorts
+
+Add Movies
+
+Add Live streams
+
+Manage videos (edit, delete, duplicate)
+
+Category management
+
+Add custom tags
+
+Upload thumbnails
+
+Analytics (views count, clicks, popular videos)
+
+🔥 4. Website Features
+Video Management
+
+Add videos via YouTube embed URL
+
+Autofetch title, thumbnail, duration
+
+Add categories (movies, sports, tech, gaming, etc.)
+
+Add tags
+
+Auto-generate permalink
+
+Playback Features
+
+Mobile responsive
+
+Lightweight player (YouTube iframe)
+
+Auto next suggestion
+
+Related videos based on category + tags
+
+User Experience
+
+Dark / light mode
+
+Infinite scroll or pagination
+
+Sidebar like YouTube
+
+Top header with search bar
+
+🔥 5. SEO System
+
+For every video page, generate:
+
+Meta title
+
+Meta description
+
+Schema.org VideoObject
+
+OpenGraph tags
+
+Keywords
+
+Automatic sitemap.xml
+
+Automatic robots.txt
+
+🔥 6. Monetization Features
+
+Add from admin panel:
+
+Google AdSense (head, body, footer)
+
+Banner ads
+
+In-video overlay ads
+
+Custom HTML ads
+
+ads.txt generator
+
+🔥 7. Admin Custom Code Injection
+
+In admin panel, add fields to insert:
+
+Custom code in HEAD
+
+Custom code in BODY (Top + Bottom)
+
+Custom code in Footer
+All codes should appear instantly on frontend pages.
+
+🔥 8. Site-Wide Security
+
+Anti-SQL injection (prepared statements)
+
+Anti-XSS filtering
+
+CSRF tokens for all forms
+
+Secured admin login with password hashing
+
+Secure session handling
+
+File upload security (thumbnail)
+
+🔥 9. Database Structure
+
+Create tables for:
+
+users
+
+admin
+
+videos
+
+categories
+
+tags
+
+video_tags
+
+analytics_views
+
+custom_codes
+
+site_settings
+
+ads
+
+Provide SQL file + schema diagram.
+
+🔥 10. Additional Features
+
+Auto sitemap generator (update daily)
+
+Download button (disabled or enabled via admin)
+
+Report video system
+
+Add “Top Trending” based on analytics
+
+Add “Recently Uploaded”
+
+🔥 11. Final Output Requirements
+
+Provide:
+
+Full PHP code
+
+HTML/CSS/JS frontend
+
+Complete admin panel
+
+Database schema (.sql)
+
+Installation guide
+
+Folder structure (MVC style recommended)
+
+All API endpoints (if any)
+
+All security implementations
+
+Complete documentation
+
+Generate everything exactly as required above.
+Do not skip any feature.
+Optimize all code for speed and SEO.
+
+If you want, I can also generate:
+
+✅ Full frontend UI
+✅ Full PHP backend
+✅ Full MySQL database (.sql)
+✅ Admin Panel UI
+✅ Installer
+✅ Logo + theme ideas
+Just tell me “make the full code” and I’ll build it section by section.
+
+Want the complete source code too?
