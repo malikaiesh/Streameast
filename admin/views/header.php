@@ -98,7 +98,7 @@
                 </div>
                 
                 <?php
-                $configPages = ['account-settings.php', 'custom-code.php', 'backup.php', 'settings.php'];
+                $configPages = ['account-settings.php', 'custom-code.php', 'backup.php', 'settings.php', 'seo-manager.php'];
                 $isConfigActive = in_array(basename($_SERVER['PHP_SELF']), $configPages);
                 ?>
                 <div class="nav-section">
@@ -119,6 +119,10 @@
                         <a href="backup.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'backup.php' ? 'active' : '' ?>">
                             <span class="nav-icon">💾</span>
                             <span class="nav-label">Backup</span>
+                        </a>
+                        <a href="seo-manager.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'seo-manager.php' ? 'active' : '' ?>">
+                            <span class="nav-icon">🔍</span>
+                            <span class="nav-label">SEO Manager</span>
                         </a>
                         <a href="settings.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'settings.php' ? 'active' : '' ?>">
                             <span class="nav-icon">⚙️</span>
