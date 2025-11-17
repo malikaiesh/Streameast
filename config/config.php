@@ -16,8 +16,9 @@ define('DB_PATH', __DIR__ . '/../database.db');
 // define('DB_PASS', '');
 // define('DB_SOCKET', '/tmp/mysql.sock'); // For Replit
 
-// Site configuration
-define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST']);
+// Site configuration - Auto-detect HTTPS
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443 ? 'https://' : 'http://';
+define('SITE_URL', $protocol . $_SERVER['HTTP_HOST']);
 define('BASE_PATH', dirname(__DIR__));
 define('UPLOAD_PATH', BASE_PATH . '/uploads/');
 define('THUMBNAIL_PATH', BASE_PATH . '/assets/thumbnails/');
