@@ -37,18 +37,11 @@ class SitemapGenerator {
             $xml .= $this->addUrl($url, $post['updated_at'] ?? $post['created_at'], '0.6', 'weekly');
         }
         
-        // Pages
-        $pages = $this->getPages();
-        foreach ($pages as $page) {
-            $url = $this->baseUrl . '/' . $page['slug'] . '.php';
-            $xml .= $this->addUrl($url, $page['updated_at'] ?? $page['created_at'], '0.5', 'monthly');
-        }
-        
-        // Categories
-        $categories = $this->getCategories();
-        foreach ($categories as $category) {
-            $url = $this->baseUrl . '/category.php?id=' . $category['id'];
-            $xml .= $this->addUrl($url, date('Y-m-d'), '0.6', 'weekly');
+        // Static legal pages (these have physical PHP files)
+        $staticLegalPages = ['privacy-policy', 'terms', 'dmca', 'contact'];
+        foreach ($staticLegalPages as $pageSlug) {
+            $url = $this->baseUrl . '/' . $pageSlug . '.php';
+            $xml .= $this->addUrl($url, date('Y-m-d'), '0.5', 'monthly');
         }
         
         $xml .= '</urlset>';
@@ -170,19 +163,42 @@ class SitemapGenerator {
     // Save sitemap to file
     public function saveSitemap() {
         $xml = $this->generateSitemap();
-        $filePath = '../sitemap.xml';
+        // Save to web root (project root directory) - use dirname to get parent of includes folder
+        $webRoot = dirname(__DIR__);
+        $filePath = $webRoot . '/sitemap.xml';
         file_put_contents($filePath, $xml);
+        
+        // Update robots.txt with correct sitemap URL
+        $this->updateRobotsTxt();
+        
         return true;
+    }
+    
+    // Update robots.txt with sitemap URL
+    private function updateRobotsTxt() {
+        $robotsTxt = "User-agent: *\n";
+        $robotsTxt .= "Allow: /\n";
+        $robotsTxt .= "Disallow: /admin/\n";
+        $robotsTxt .= "Disallow: /includes/\n";
+        $robotsTxt .= "Disallow: /config/\n\n";
+        $robotsTxt .= "Sitemap: " . $this->baseUrl . "/sitemap.xml\n";
+        
+        // Save to web root (project root directory) - use dirname to get parent of includes folder
+        $webRoot = dirname(__DIR__);
+        $robotsTxtPath = $webRoot . '/robots.txt';
+        file_put_contents($robotsTxtPath, $robotsTxt);
     }
     
     // Get sitemap stats
     public function getStats() {
+        $webRoot = dirname(__DIR__);
+        $sitemapPath = $webRoot . '/sitemap.xml';
+        $staticPagesCount = 4; // privacy-policy, terms, dmca, contact
         return [
             'videos' => count($this->getVideos()),
             'blog_posts' => count($this->getBlogPosts()),
-            'pages' => count($this->getPages()),
-            'categories' => count($this->getCategories()),
-            'last_generated' => file_exists('../sitemap.xml') ? date('Y-m-d H:i:s', filemtime('../sitemap.xml')) : 'Never'
+            'pages' => $staticPagesCount,
+            'last_generated' => file_exists($sitemapPath) ? date('Y-m-d H:i:s', filemtime($sitemapPath)) : 'Never'
         ];
     }
     
@@ -203,21 +219,9 @@ class SitemapGenerator {
         return $this->db->fetchAll($sql);
     }
     
-    // Get all published blog posts
+    // Get all published blog posts (with all fields needed for schema generation)
     private function getBlogPosts() {
-        $sql = "SELECT slug, created_at, updated_at FROM blog_posts WHERE status = 'published' ORDER BY created_at DESC";
-        return $this->db->fetchAll($sql);
-    }
-    
-    // Get all active pages
-    private function getPages() {
-        $sql = "SELECT slug, created_at, updated_at FROM pages WHERE status = 'active' ORDER BY created_at DESC";
-        return $this->db->fetchAll($sql);
-    }
-    
-    // Get all categories
-    private function getCategories() {
-        $sql = "SELECT id FROM categories ORDER BY name ASC";
+        $sql = "SELECT slug, title, content, featured_image, category, author_name, published_at, created_at, updated_at FROM blog_posts WHERE status = 'published' ORDER BY created_at DESC";
         return $this->db->fetchAll($sql);
     }
 }

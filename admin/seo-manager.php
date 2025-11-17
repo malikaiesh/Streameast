@@ -165,10 +165,6 @@ include 'views/header.php';
                 <h4>Pages</h4>
                 <p class="stat-value"><?= number_format($stats['pages']) ?></p>
             </div>
-            <div class="stat-card">
-                <h4>Categories</h4>
-                <p class="stat-value"><?= number_format($stats['categories']) ?></p>
-            </div>
         </div>
         
         <div class="info-box">
@@ -179,7 +175,7 @@ include 'views/header.php';
     <!-- XML Sitemap Section -->
     <div class="seo-section">
         <h3>🗺️ XML Sitemap Generator</h3>
-        <p>Generate an XML sitemap for search engines like Google, Bing, and Yahoo. The sitemap includes all your videos, blog posts, pages, and categories.</p>
+        <p>Generate an XML sitemap for search engines like Google, Bing, and Yahoo. The sitemap includes all your videos, blog posts, and pages.</p>
         
         <div class="info-box">
             <strong>Sitemap URL:</strong> <a href="<?= SITE_URL ?>/sitemap.xml" target="_blank"><?= SITE_URL ?>/sitemap.xml</a>
@@ -191,7 +187,6 @@ include 'views/header.php';
             <li>✅ All published videos</li>
             <li>✅ All published blog posts</li>
             <li>✅ All active pages (Privacy Policy, Terms, etc.)</li>
-            <li>✅ All categories</li>
             <li>✅ Static pages (Trending, Shorts, Movies, Live Sports, Blog)</li>
         </ul>
         
