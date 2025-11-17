@@ -6,6 +6,22 @@ A complete video streaming platform called **Stream East** built with pure PHP (
 
 ## Recent Updates
 
+### November 17, 2025 - UI/UX Improvements & Backup Restore
+- **Pages Manager UI Redesign:**
+  - Professional gradient purple header matching Calculators Manager style
+  - Icon badge with user info widget showing logged-in admin
+  - Improved text visibility with white/light text on dark backgrounds
+  - Modern table design with icon column and color-coded status badges
+  - Professional action buttons (Edit/Delete) with proper hover effects
+  - Enhanced empty states and better spacing throughout
+- **Backup System - Restore Functionality:**
+  - Added full restore capability to backup system
+  - One-click restore button for each backup with safety confirmation
+  - Automatically restores database (SQLite or MySQL), uploads, and thumbnails
+  - Temporary extraction directory with automatic cleanup
+  - Clear warning dialogs to prevent accidental data loss
+  - Success messages showing restore timestamp
+
 ### November 17, 2025 - Pages Management System
 - **Pages Management in Admin Panel:**
   - Complete CRUD system for managing website pages from admin panel
