@@ -52,6 +52,11 @@ Preferred communication style: Simple, everyday language.
   - Create/edit blog posts with title, category, excerpt, content, and featured images
   - Draft/published status management
   - Production-ready DOM-based HTML sanitization for user-generated content
+- Complete backup system:
+  - One-click full website backups (database + files)
+  - Download backups as ZIP files
+  - Manage and delete old backups
+  - Automatic inclusion of database, uploads, and thumbnails
 - Real database data integration for all stats and charts
 - Responsive design for mobile and tablet views
 
