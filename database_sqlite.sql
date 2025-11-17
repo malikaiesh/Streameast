@@ -191,3 +191,11 @@ INSERT OR IGNORE INTO site_settings (setting_key, setting_value) VALUES
 ('videos_per_page', '12'),
 ('adsense_code', ''),
 ('google_analytics', '');
+
+-- Add role-based access control columns to admin table
+-- Role types: super_admin, admin, editor, viewer
+ALTER TABLE admin ADD COLUMN role TEXT DEFAULT 'admin';
+ALTER TABLE admin ADD COLUMN full_name TEXT;
+ALTER TABLE admin ADD COLUMN status TEXT DEFAULT 'active';
+ALTER TABLE admin ADD COLUMN last_login DATETIME;
+ALTER TABLE admin ADD COLUMN updated_at DATETIME DEFAULT CURRENT_TIMESTAMP;
