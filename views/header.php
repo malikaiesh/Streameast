@@ -46,8 +46,12 @@
     <?php endif; ?>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/assets/favicon.png">
-    <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
+    <?php 
+    $favicon = $settings->get('site_favicon', '/assets/favicon.png');
+    $faviconUrl = $favicon ? SITE_URL . '/' . $favicon : SITE_URL . '/assets/favicon.png';
+    ?>
+    <link rel="icon" type="image/png" href="<?= $faviconUrl ?>">
+    <link rel="shortcut icon" type="image/png" href="<?= $faviconUrl ?>">
     
     <!-- Schema.org VideoObject -->
     <?php if (isset($video)): ?>
@@ -95,7 +99,13 @@
         <div class="header-left">
             <button class="menu-btn" onclick="toggleSidebar()">☰</button>
             <a href="<?= SITE_URL ?>" class="logo">
-                <h1><?= Security::output($siteName) ?></h1>
+                <?php 
+                $siteLogo = $settings->get('site_logo');
+                if ($siteLogo): ?>
+                    <img src="<?= SITE_URL . '/' . Security::output($siteLogo) ?>" alt="<?= Security::output($siteName) ?>" class="site-logo-img">
+                <?php else: ?>
+                    <h1><?= Security::output($siteName) ?></h1>
+                <?php endif; ?>
             </a>
         </div>
         

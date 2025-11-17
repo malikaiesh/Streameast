@@ -88,6 +88,14 @@ body {
 
 .logo {
     text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.site-logo-img {
+    max-height: 40px;
+    width: auto;
+    object-fit: contain;
 }
 
 .theme-toggle {
@@ -1015,6 +1023,26 @@ body.theme-light .theme-icon-dark {
 
 .social-icon.youtube {
     background: #ff0000;
+    color: white;
+}
+
+.social-icon.tiktok {
+    background: #000000;
+    color: white;
+}
+
+.social-icon.linkedin {
+    background: #0077b5;
+    color: white;
+}
+
+.social-icon.discord {
+    background: #5865f2;
+    color: white;
+}
+
+.social-icon.telegram {
+    background: #0088cc;
     color: white;
 }
 
