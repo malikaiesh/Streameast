@@ -6,6 +6,38 @@ A complete video streaming platform called **Stream East** built with pure PHP (
 
 ## Recent Updates
 
+### November 17, 2025 - Advanced Security System Implementation
+- **Comprehensive Security Management:**
+  - New "Security" section in admin sidebar with dedicated dashboard
+  - Real-time security statistics and threat monitoring
+  - Activity logging for all admin actions with IP tracking
+  - Complete security event audit trail
+- **Brute Force Protection:**
+  - Automatic IP blocking after failed login attempts (configurable threshold)
+  - Rate limiting to prevent automated attacks
+  - Temporary and permanent IP blocking capabilities
+  - IP whitelist/blacklist management interface
+- **Security Headers:**
+  - Automatic HTTP security headers (X-Frame-Options, CSP, X-XSS-Protection, etc.)
+  - Content Security Policy (CSP) for XSS prevention
+  - Clickjacking protection
+  - MIME sniffing prevention
+- **Activity Monitoring:**
+  - Complete login attempt tracking (successful and failed)
+  - Admin action logging with timestamps and IP addresses
+  - Security event dashboard with statistics
+  - Filterable activity logs with pagination
+- **Security Settings:**
+  - Configurable max login attempts
+  - Adjustable lockout duration
+  - Session timeout configuration
+  - Rate limiting controls
+  - Toggle for security headers
+- **Database Security:**
+  - New security tables: login_attempts, ip_blocks, activity_logs, security_settings, sessions
+  - Automated cleanup of expired IP blocks
+  - Session management and tracking
+
 ### November 17, 2025 - UI/UX Improvements & Backup Restore
 - **Pages Manager UI Redesign:**
   - Professional gradient purple header matching Calculators Manager style
