@@ -63,48 +63,68 @@
                     </a>
                 </div>
                 
+                <?php
+                $securityPages = ['security-dashboard.php', 'security-activity.php', 'security-ip-management.php', 'security-users.php', 'security-settings.php'];
+                $isSecurityActive = in_array(basename($_SERVER['PHP_SELF']), $securityPages);
+                ?>
                 <div class="nav-section">
-                    <div class="section-title">Security</div>
-                    <a href="security-dashboard.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'security-dashboard.php' ? 'active' : '' ?>">
+                    <div class="dropdown-toggle <?= $isSecurityActive ? 'active' : '' ?>" onclick="toggleDropdown(this)">
                         <span class="nav-icon">🔒</span>
-                        <span class="nav-label">Security Dashboard</span>
-                    </a>
-                    <a href="security-activity.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'security-activity.php' ? 'active' : '' ?>">
-                        <span class="nav-icon">📊</span>
-                        <span class="nav-label">Activity Logs</span>
-                    </a>
-                    <a href="security-ip-management.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'security-ip-management.php' ? 'active' : '' ?>">
-                        <span class="nav-icon">⛔</span>
-                        <span class="nav-label">IP Management</span>
-                    </a>
-                    <a href="security-users.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'security-users.php' ? 'active' : '' ?>">
-                        <span class="nav-icon">👥</span>
-                        <span class="nav-label">User Management</span>
-                    </a>
-                    <a href="security-settings.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'security-settings.php' ? 'active' : '' ?>">
-                        <span class="nav-icon">⚙️</span>
-                        <span class="nav-label">Security Settings</span>
-                    </a>
+                        <span class="nav-label">Security</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="dropdown-content <?= $isSecurityActive ? 'show' : '' ?>">
+                        <a href="security-dashboard.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'security-dashboard.php' ? 'active' : '' ?>">
+                            <span class="nav-icon">🔒</span>
+                            <span class="nav-label">Security Dashboard</span>
+                        </a>
+                        <a href="security-activity.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'security-activity.php' ? 'active' : '' ?>">
+                            <span class="nav-icon">📊</span>
+                            <span class="nav-label">Activity Logs</span>
+                        </a>
+                        <a href="security-ip-management.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'security-ip-management.php' ? 'active' : '' ?>">
+                            <span class="nav-icon">⛔</span>
+                            <span class="nav-label">IP Management</span>
+                        </a>
+                        <a href="security-users.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'security-users.php' ? 'active' : '' ?>">
+                            <span class="nav-icon">👥</span>
+                            <span class="nav-label">User Management</span>
+                        </a>
+                        <a href="security-settings.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'security-settings.php' ? 'active' : '' ?>">
+                            <span class="nav-icon">⚙️</span>
+                            <span class="nav-label">Security Settings</span>
+                        </a>
+                    </div>
                 </div>
                 
+                <?php
+                $configPages = ['account-settings.php', 'custom-code.php', 'backup.php', 'settings.php'];
+                $isConfigActive = in_array(basename($_SERVER['PHP_SELF']), $configPages);
+                ?>
                 <div class="nav-section">
-                    <div class="section-title">Configuration</div>
-                    <a href="account-settings.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'account-settings.php' ? 'active' : '' ?>">
-                        <span class="nav-icon">👤</span>
-                        <span class="nav-label">Account Settings</span>
-                    </a>
-                    <a href="custom-code.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'custom-code.php' ? 'active' : '' ?>">
-                        <span class="nav-icon">💻</span>
-                        <span class="nav-label">Custom Code</span>
-                    </a>
-                    <a href="backup.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'backup.php' ? 'active' : '' ?>">
-                        <span class="nav-icon">💾</span>
-                        <span class="nav-label">Backup</span>
-                    </a>
-                    <a href="settings.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'settings.php' ? 'active' : '' ?>">
+                    <div class="dropdown-toggle <?= $isConfigActive ? 'active' : '' ?>" onclick="toggleDropdown(this)">
                         <span class="nav-icon">⚙️</span>
-                        <span class="nav-label">Settings</span>
-                    </a>
+                        <span class="nav-label">Configuration</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="dropdown-content <?= $isConfigActive ? 'show' : '' ?>">
+                        <a href="account-settings.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'account-settings.php' ? 'active' : '' ?>">
+                            <span class="nav-icon">👤</span>
+                            <span class="nav-label">Account Settings</span>
+                        </a>
+                        <a href="custom-code.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'custom-code.php' ? 'active' : '' ?>">
+                            <span class="nav-icon">💻</span>
+                            <span class="nav-label">Custom Code</span>
+                        </a>
+                        <a href="backup.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'backup.php' ? 'active' : '' ?>">
+                            <span class="nav-icon">💾</span>
+                            <span class="nav-label">Backup</span>
+                        </a>
+                        <a href="settings.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'settings.php' ? 'active' : '' ?>">
+                            <span class="nav-icon">⚙️</span>
+                            <span class="nav-label">Settings</span>
+                        </a>
+                    </div>
                 </div>
                 
                 <a href="logout.php" class="nav-item nav-logout">
@@ -119,3 +139,21 @@
                 <a href="<?= SITE_URL ?>" target="_blank" class="btn btn-secondary">View Site</a>
             </header>
             <div class="admin-main">
+            
+    <script>
+    function toggleDropdown(element) {
+        const dropdownContent = element.nextElementSibling;
+        const arrow = element.querySelector('.dropdown-arrow');
+        
+        // Toggle the dropdown
+        dropdownContent.classList.toggle('show');
+        element.classList.toggle('active');
+        
+        // Rotate arrow
+        if (dropdownContent.classList.contains('show')) {
+            arrow.style.transform = 'rotate(180deg)';
+        } else {
+            arrow.style.transform = 'rotate(0deg)';
+        }
+    }
+    </script>
