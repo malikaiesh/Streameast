@@ -37,11 +37,12 @@ A fully-featured YouTube-style video streaming website built with **PHP**, **SQL
 - ✅ Site settings
 - ✅ Thumbnail upload/auto-fetch
 
-**Admin Login Credentials:**
-- Username: `admin`
-- Password: `admin123`
+**Admin Account Setup:**
+- On first installation, visit `/admin/setup.php` to create your admin account
+- You can set environment variables (`ADMIN_USERNAME`, `ADMIN_PASSWORD`, `ADMIN_EMAIL`) for automatic setup
+- Or use the web-based setup wizard to create your account manually
 
-⚠️ **Change these immediately after first login!**
+⚠️ **Security: Delete `admin/setup.php` after creating your admin account!**
 
 ### 🔍 SEO Features
 - ✅ Meta tags (title, description, keywords)
@@ -86,9 +87,11 @@ A fully-featured YouTube-style video streaming website built with **PHP**, **SQL
 ## 🚀 Quick Start
 
 The website is already running! Just:
-1. Open the Replit webview
-2. Go to `/admin/login.php` to access the admin panel
-3. Login with `admin` / `admin123`
+1. **First-time setup**: Visit `/admin/setup.php` to create your admin account
+   - Option A: Set environment variables `ADMIN_USERNAME`, `ADMIN_PASSWORD`, `ADMIN_EMAIL`
+   - Option B: Use the web setup wizard
+2. **Delete setup file**: Remove `/admin/setup.php` for security
+3. Go to `/admin/login.php` and login with your credentials
 4. Start adding videos!
 
 ## 📁 Project Structure
@@ -223,20 +226,23 @@ Key settings:
 
 ## 🚨 Important Notes
 
-1. **Change admin password** after first login
-2. **Database resets**: Deleting `database.db` will reset everything
-3. **Session warnings**: Normal in development, will resolve in production
-4. **YouTube API**: Uses public oEmbed (no API key needed)
-5. **Thumbnails**: Auto-fetch from YouTube or upload custom
+1. **First-time setup**: Run `/admin/setup.php` then delete it for security
+2. **Environment variables**: Copy `.env.example` to `.env` for configuration
+3. **Database resets**: Deleting `database.db` will reset everything
+4. **Session warnings**: Normal in development, will resolve in production
+5. **YouTube API**: Uses public oEmbed (no API key needed)
+6. **Thumbnails**: Auto-fetch from YouTube or upload custom
 
 ## 🔐 Security Best Practices
 
-1. ✅ Change default admin password
-2. ✅ Use HTTPS in production
-3. ✅ Regular database backups
-4. ✅ Keep PHP updated
-5. ✅ Monitor analytics for unusual activity
-6. ✅ Review custom code before injection
+1. ✅ Delete `/admin/setup.php` after initial setup
+2. ✅ Use strong admin passwords (8+ characters)
+3. ✅ Store credentials in environment variables, never in code
+4. ✅ Use HTTPS in production
+5. ✅ Regular database backups
+6. ✅ Keep PHP updated
+7. ✅ Monitor analytics for unusual activity
+8. ✅ Review custom code before injection
 
 ## 📊 Testing
 
@@ -248,14 +254,16 @@ Key settings:
 
 ## 🎯 Next Steps
 
-1. Login to admin panel
-2. Add your first video
-3. Customize categories
-4. Configure SEO settings
-5. Setup monetization (AdSense/Ads)
-6. Add custom code (Analytics)
-7. Test frontend pages
-8. Deploy to production!
+1. **Setup**: Visit `/admin/setup.php` to create admin account
+2. **Security**: Delete `/admin/setup.php` after setup
+3. Login to admin panel
+4. Add your first video
+5. Customize categories
+6. Configure SEO settings
+7. Setup monetization (AdSense/Ads)
+8. Add custom code (Analytics)
+9. Test frontend pages
+10. Deploy to production!
 
 ## 📄 License
 
